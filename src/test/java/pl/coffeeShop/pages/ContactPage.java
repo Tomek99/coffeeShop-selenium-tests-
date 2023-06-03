@@ -72,12 +72,20 @@ public class ContactPage {
     }
 
     public List<String> getErrors() {
-        return errors.stream().map(WebElement::getText).toList();
+
+        return errors.stream()
+                .map(WebElement::getText)
+                .toList().stream()
+                .map(String::trim)
+                .filter(trim -> !trim
+                        .isEmpty())
+                .collect(Collectors.toList());
     }
 
-    public  ArrayList<String> handleAlert()  {
+    public ArrayList<String> handleAlert() {
         SeleniumHelper.waitForAlert(driver);
-        String text = driver.switchTo().alert().getText();;
+        String text = driver.switchTo().alert().getText();
+        ;
 
         String[] elements = text.split(",");
         List<String> fixedLenghtList = Arrays.asList(elements);
