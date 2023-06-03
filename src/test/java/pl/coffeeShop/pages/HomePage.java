@@ -17,6 +17,6 @@ public class HomePage {
     public ContactPage openContactPage() {
         aContact.click();
 
-        return ContactPage(driver);
+        return new ContactPage(driver);
     }
 }
