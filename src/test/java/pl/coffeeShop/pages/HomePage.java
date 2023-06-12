@@ -23,6 +23,10 @@ public class HomePage {
     @FindBy(xpath = "//div[text()='You have been logged in!']")
     private WebElement logInAlert;
 
+    @FindBy(xpath = "//a[text()='Log in']")
+    List<WebElement> aLogin;
+
+
     WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -47,5 +51,13 @@ public class HomePage {
     public String getLogInAlert() {
         SeleniumHelper.waitForVisibility(driver, By.xpath("//div[text()='You have been logged in!']"));
         return logInAlert.getText();
+    }
+
+    public LoginPage openLoginPage() {
+        Actions action = new Actions(driver);
+        action.moveToElement(userNavigationBtn).perform();
+        aLogin.stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
+
+        return new LoginPage(driver);
     }
 }
