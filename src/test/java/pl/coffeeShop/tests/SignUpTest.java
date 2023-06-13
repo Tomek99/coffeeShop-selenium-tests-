@@ -65,9 +65,9 @@ public class SignUpTest extends BaseTest {
                 .fillFormWithValidData(user)
                 .handleCheckBox()
                 .handleSignUpBtnInvalidData()
-                .getError("Must be 3 characters or less");
+                .getError("Must be 3 characters or more");
 
-        Assert.assertTrue(error.contains("Must be 3 characters or less"));
+        Assert.assertTrue(error.contains("Must be 3 characters or more"));
     }
 
     @Test
@@ -85,9 +85,9 @@ public class SignUpTest extends BaseTest {
                 .fillFormWithValidData(user)
                 .handleCheckBox()
                 .handleSignUpBtnInvalidData()
-                .getError("Must be 3 characters or less");
+                .getError("Must be 3 characters or more");
 
-        Assert.assertTrue(error.contains("Must be 3 characters or less"));
+        Assert.assertTrue(error.contains("Must be 3 characters or more"));
 
     }
 
