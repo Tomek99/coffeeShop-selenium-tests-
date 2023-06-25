@@ -85,8 +85,6 @@ public class ContactPage {
     public ArrayList<String> handleAlert() {
         SeleniumHelper.waitForAlert(driver);
         String text = driver.switchTo().alert().getText();
-        ;
-
         String[] elements = text.split(",");
         List<String> fixedLenghtList = Arrays.asList(elements);
         return new ArrayList<>(fixedLenghtList);
