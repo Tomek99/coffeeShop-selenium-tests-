@@ -12,6 +12,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup() {
+
+
         driver = new ChromeDriver();
         driver.get("http://localhost:3000/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
