@@ -2,6 +2,7 @@ package pl.coffeeShop.pages;
 
 import com.beust.ah.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,11 +44,18 @@ public class HomePage {
     List<WebElement> aLogin;
 
 
+    @FindBy(xpath = "//header[text()='We care about you']")
+    private WebElement careAbout;
+
+
+
     WebDriver driver;
+    JavascriptExecutor js;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
+        this.js = (JavascriptExecutor) driver;
     }
 
     public ContactPage openContactPage() {
