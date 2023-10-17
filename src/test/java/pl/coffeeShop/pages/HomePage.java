@@ -1,10 +1,7 @@
 package pl.coffeeShop.pages;
 
 import com.beust.ah.A;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -26,7 +23,7 @@ public class HomePage {
     private WebElement aAbout;
 
     @FindBy(xpath = "//a[text()='Blog' and @class='NavListElement_navLink__JIc6z']")
-   private WebElement aBlog;
+    private WebElement aBlog;
 
     @FindBy(xpath = "//a[text()='Sign up']")
     private List<WebElement> aSignUp;
@@ -47,8 +44,14 @@ public class HomePage {
     @FindBy(xpath = "//header[text()='We care about you']")
     private WebElement careAbout;
 
+    @FindBy(className = "CartList_SingleProduct__2oN4t")
+    private List<WebElement> cartProducts;
 
+    @FindBy(id = "cartBtnOpen132")
+    private WebElement btnCart;
 
+    @FindBy(xpath = "//span[contains(text(), 'items)')]")
+    private WebElement cartSize;
     WebDriver driver;
     JavascriptExecutor js;
 
@@ -86,20 +89,34 @@ public class HomePage {
 
     public ProductsPage openProductsPage() {
         aProducts.click();
-
         return new ProductsPage(driver);
     }
 
     public AboutPage openAboutPage() {
         aAbout.click();
-
         return new AboutPage(driver);
     }
 
     public BlogPage openBlogPage() {
         aBlog.click();
-
         return new BlogPage(driver);
+    }
+
+    public HomePage onClickCart() {
+        SeleniumHelper.handleJavaExecutor(driver, btnCart);
+        return this;
+    }
+
+    public int getCartSize() {
+        try {
+            WebElement webElement = driver.findElement(By.xpath("//span[contains(text(), 'items)')]"));
+            return Character.getNumericValue(webElement.getText().charAt(1));
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
+    }
+    public Integer getCartProducts() {
+        return cartProducts.size();
     }
 
     public String getHeaderText() {

@@ -9,7 +9,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pl.coffeeShop.utils.SeleniumHelper;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class ProductsPage {
     @FindBy(className = "LatestProduct_LatestProduct__2nlVY")
@@ -50,12 +53,49 @@ public class ProductsPage {
     }
 
     public ProductsPage onClickBtnArrowLeft() {
-      SeleniumHelper.handleJavaExecutor(driver, btnArrowLeft);
-      return this;
+        SeleniumHelper.handleJavaExecutor(driver, btnArrowLeft);
+        return this;
+    }
+
+    public HomePage addProductsWithoutDuplicateCart(int numberOfProducts) {
+        Set<Integer> uniqueRandomNumbers = generateUniqueRandomNumbers(numberOfProducts);
+
+        for (int number : uniqueRandomNumbers) {
+            String idProduct = "cartFillId" + number;
+            WebElement cartBtn = driver.findElement(By.id(idProduct));
+            SeleniumHelper.handleJavaExecutor(driver, cartBtn);
+        }
+
+        return new HomePage(driver);
+    }
+
+    public HomePage addDuplicateProductsCart(int numberOfProducts) {
+        for (int i = 0; i < numberOfProducts; i++) {
+            int randomProductTwice = new Random().nextInt(2);
+
+            String idProduct = "cartFillId" + randomProductTwice;
+            WebElement cartBtn = driver.findElement(By.id(idProduct));
+            SeleniumHelper.handleJavaExecutor(driver, cartBtn);
+        }
+
+        return new HomePage(driver);
+    }
+
+    private Set<Integer> generateUniqueRandomNumbers(int size) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        Random random = new Random();
+
+        while (uniqueNumbers.size() < size) {
+            int randomNumber = random.nextInt(size);
+            uniqueNumbers.add(randomNumber);
+        }
+        return uniqueNumbers;
     }
 
 
     public int getProducts() {
         return listOfProducts.size();
     }
+
+
 }
