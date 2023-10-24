@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ContactPage {
+    @FindBy(xpath = "//header[text()='contact us']")
+    private WebElement header;
     @FindBy(name = "name_form_one")
     private WebElement name_input_one;
     @FindBy(name = "email")
@@ -32,7 +34,7 @@ public class ContactPage {
     @FindBy(id = "btnFormContact1")
     private WebElement btn_form_contact1;
 
-    @FindBy(className = "ErrMessage_errorComponent__HOwSm")
+    @FindBy(className = "ErrMessage_errorText__1OrwW")
     List<WebElement> errors;
 
 
@@ -88,5 +90,9 @@ public class ContactPage {
         String[] elements = text.split(",");
         List<String> fixedLenghtList = Arrays.asList(elements);
         return new ArrayList<>(fixedLenghtList);
+    }
+
+    public String getHeaderText() {
+        return header.getText();
     }
 }
