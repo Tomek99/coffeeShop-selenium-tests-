@@ -1,10 +1,8 @@
 package pl.coffeeShop.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pl.coffeeShop.utils.SeleniumHelper;
@@ -37,25 +35,40 @@ public class ProductsPage {
 
     }
 
-    public ProductsPage onClickBtnOne() {
+    public ProductsPage clickOnBtnOne() {
         SeleniumHelper.handleJavaExecutor(driver, btnOne);
         return this;
     }
 
-    public ProductsPage onClickBtnTwo() {
+    public ProductsPage clickOnBtnTwo() {
         SeleniumHelper.handleJavaExecutor(driver, btnTwo);
         return this;
     }
 
-    public ProductsPage onClickBtnNext() {
+    public ProductsPage clickOnBtnNext() {
         SeleniumHelper.handleJavaExecutor(driver, btnNext);
         return this;
     }
 
-    public ProductsPage onClickBtnArrowLeft() {
+    public ProductsPage clickOnBtnArrowLeft() {
         SeleniumHelper.handleJavaExecutor(driver, btnArrowLeft);
         return this;
     }
+
+    public ProductDetailsPage openProductDetailsPage(String productId) {
+        driver.findElement(By.id(productId)).click();
+
+        return new ProductDetailsPage(driver);
+    }
+
+    public ProductDetailsPage openProductDetailsPageByText (String productName) {
+        driver.findElement(By.xpath("//h3[text()='" + productName + "']"))
+                .click();
+
+        return  new ProductDetailsPage(driver);
+    }
+
+
 
     public HomePage addProductsWithoutDuplicateCart(int numberOfProducts) {
         Set<Integer> uniqueRandomNumbers = generateUniqueRandomNumbers(numberOfProducts);
