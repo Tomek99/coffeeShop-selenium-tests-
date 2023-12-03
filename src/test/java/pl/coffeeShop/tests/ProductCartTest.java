@@ -13,7 +13,7 @@ public class ProductCartTest extends BaseTest {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
                 .addProductsWithoutDuplicateCart(1)
-                .onClickCart()
+                .clickOnCart()
                 .getCartProducts();
 
         Assert.assertEquals(numberOfProducts, 1);
@@ -24,7 +24,7 @@ public class ProductCartTest extends BaseTest {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
                 .addProductsWithoutDuplicateCart(2)
-                .onClickCart()
+                .clickOnCart()
                 .getCartProducts();
 
         Assert.assertEquals(numberOfProducts, 2);
@@ -37,7 +37,7 @@ public class ProductCartTest extends BaseTest {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
                 .addProductsWithoutDuplicateCart(randomNumberOfProducts)
-                .onClickCart()
+                .clickOnCart()
                 .getCartProducts();
 
         Assert.assertEquals(numberOfProducts, randomNumberOfProducts);
@@ -49,7 +49,7 @@ public class ProductCartTest extends BaseTest {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
                 .addDuplicateProductsCart(randomNumberOfProducts)
-                .onClickCart()
+                .clickOnCart()
                 .getCartSize();
 
         Assert.assertEquals(randomNumberOfProducts, numberOfProducts);
@@ -63,7 +63,7 @@ public class ProductCartTest extends BaseTest {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
                 .addDuplicateProductsCart(emptyCart)
-                .onClickCart()
+                .clickOnCart()
                 .getCartSize();
 
         Assert.assertEquals(emptyCart, numberOfProducts);
