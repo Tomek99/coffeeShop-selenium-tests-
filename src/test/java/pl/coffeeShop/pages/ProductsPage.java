@@ -25,6 +25,9 @@ public class ProductsPage {
     @FindBy(xpath = "//a[@aria-label='Previous page']")
     private WebElement btnArrowLeft;
 
+    @FindBy(className = "NavigationBar_quantityProductsInBasket__UCI0e")
+    private WebElement productsQuantity;
+
 
     WebDriver driver;
 
@@ -57,17 +60,36 @@ public class ProductsPage {
 
     public ProductDetailsPage openProductDetailsPage(String productId) {
         driver.findElement(By.id(productId)).click();
-
         return new ProductDetailsPage(driver);
     }
 
-    public ProductDetailsPage openProductDetailsPageByText (String productName) {
+    public ProductDetailsPage openProductDetailsPageByText(String productName) {
         driver.findElement(By.xpath("//h3[text()='" + productName + "']"))
                 .click();
-
-        return  new ProductDetailsPage(driver);
+        return new ProductDetailsPage(driver);
     }
 
+    public ProductsPage addProductCart(String productId) {
+        driver.findElement(By.id(productId)).click();
+        return this;
+    }
+
+    public ProductsPage addProductWishList(String wishlistId) {
+        driver.findElement(By.id(wishlistId)).click();
+        return this;
+    }
+
+    public String getMessageText() {
+        String alertXPath = "//div[@role='alert']/div[2]";
+
+        SeleniumHelper.waitForVisibility(driver, By.xpath(alertXPath));
+        return driver.findElement(By.xpath(alertXPath)).getText();
+    }
+
+
+    public String getProductsQuantityInCart() {
+        return productsQuantity.getText();
+    }
 
 
     public HomePage addProductsWithoutDuplicateCart(int numberOfProducts) {

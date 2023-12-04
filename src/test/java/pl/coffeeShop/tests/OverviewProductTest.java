@@ -34,12 +34,29 @@ public class OverviewProductTest extends BaseTest {
 
     @Test
     public void addProductCartTest() {
+        String productId = "cartFillId1";
+        String productQuantityExpected = "1";
 
+        String productQuantity = new HomePage(driver)
+                .openProductsPage()
+                .addProductCart(productId)
+                .getProductsQuantityInCart();
+
+        Assert.assertEquals(productQuantity, productQuantityExpected);
     }
 
     @Test
-    public void addProductWishListTest() {
+    public void addProductWishListTest()  {
+        String wishBtnId = "wishlistId2";
+        String messageTextExpected = "Product added to wish list!";
 
+        String messageText = new HomePage(driver)
+                .openProductsPage()
+                .addProductWishList(wishBtnId)
+                .getMessageText();
+
+
+        Assert.assertEquals(messageText, messageTextExpected);
     }
 
 
