@@ -1,5 +1,6 @@
 package pl.coffeeShop.pages;
 
+import com.beust.ah.A;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -64,6 +65,7 @@ public class HomePage {
 
     @FindBy(xpath = ("//div[@class='SearchEngine_flexRowTemplate__L0kWa']/div"))
     private List<WebElement> foundElementsSearcher;
+
     WebDriver driver;
     JavascriptExecutor js;
 
@@ -157,7 +159,7 @@ public class HomePage {
     public WebElement clickOnCloseSearcherBtn() {
         closeSearcherBtn.click();
 
-        return  closeSearcherBtn;
+        return closeSearcherBtn;
     }
 
     public int getCartSize() {
@@ -169,6 +171,8 @@ public class HomePage {
         }
     }
 
+
+
     public Integer getCartProducts() {
         return cartProducts.size();
     }
@@ -176,4 +180,6 @@ public class HomePage {
     public String getHeaderText() {
         return headerTextAboutUs.getText();
     }
+
+
 }

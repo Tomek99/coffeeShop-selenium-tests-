@@ -28,6 +28,9 @@ public class ProductsPage {
     @FindBy(className = "NavigationBar_quantityProductsInBasket__UCI0e")
     private WebElement productsQuantity;
 
+    @FindBy(xpath = "//div/a[@href='/wish-list']")
+    private WebElement btnWishlist;
+
 
     WebDriver driver;
 
@@ -130,6 +133,12 @@ public class ProductsPage {
 
     public int getProducts() {
         return listOfProducts.size();
+    }
+
+
+    public WishlistPage openWishlistPage () {
+        btnWishlist.click();
+        return new WishlistPage(driver);
     }
 
 
