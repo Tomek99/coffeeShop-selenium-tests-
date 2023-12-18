@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import pl.coffeeShop.utils.SeleniumHelper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomePage {
     @FindBy(xpath = "//a[text()='Contact' and @class='NavListElement_navLink__JIc6z']")
@@ -52,6 +53,19 @@ public class HomePage {
 
     @FindBy(xpath = "//span[contains(text(), 'items)')]")
     private WebElement cartSize;
+
+    @FindBy(id = "bs-search")
+    private WebElement bsSearch;
+
+    @FindBy(id = "search-form")
+    private WebElement searchInput;
+
+    @FindBy(id = "btn-close-searcher")
+    private WebElement closeSearcherBtn;
+
+    @FindBy(xpath = ("//div[@class='SearchEngine_flexRowTemplate__L0kWa']/div"))
+    private List<WebElement> foundElementsSearcher;
+
     WebDriver driver;
     JavascriptExecutor js;
 
@@ -102,9 +116,50 @@ public class HomePage {
         return new BlogPage(driver);
     }
 
-    public HomePage onClickCart() {
+    public HomePage clickOnCart() {
         SeleniumHelper.handleJavaExecutor(driver, btnCart);
         return this;
+    }
+
+    public HomePage clickOnSearcherBsBtn() {
+        bsSearch.click();
+
+        return this;
+    }
+
+    public HomePage fillSearcherInput(String inputData) {
+        searchInput.sendKeys(inputData);
+
+        return this;
+    }
+
+    public HomePage clearSearcherInput() {
+        searchInput.clear();
+        searchInput.sendKeys(" ");
+        searchInput.clear();
+
+        return this;
+    }
+
+    public List<String> searchElements() {
+        return foundElementsSearcher
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+
+    }
+
+    public ProductDetailsPage clickOnProduct(int id) {
+        foundElementsSearcher.get(id).click();
+
+        return new ProductDetailsPage(driver);
+    }
+
+    public WebElement clickOnCloseSearcherBtn() {
+        closeSearcherBtn.click();
+
+        return closeSearcherBtn;
     }
 
     public int getCartSize() {
@@ -115,6 +170,9 @@ public class HomePage {
             return 0;
         }
     }
+
+
+
     public Integer getCartProducts() {
         return cartProducts.size();
     }
@@ -122,4 +180,6 @@ public class HomePage {
     public String getHeaderText() {
         return headerTextAboutUs.getText();
     }
+
+
 }

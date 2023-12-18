@@ -1,10 +1,8 @@
 package pl.coffeeShop.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pl.coffeeShop.utils.SeleniumHelper;
@@ -27,6 +25,12 @@ public class ProductsPage {
     @FindBy(xpath = "//a[@aria-label='Previous page']")
     private WebElement btnArrowLeft;
 
+    @FindBy(className = "NavigationBar_quantityProductsInBasket__UCI0e")
+    private WebElement productsQuantity;
+
+    @FindBy(xpath = "//div/a[@href='/wish-list']")
+    private WebElement btnWishlist;
+
 
     WebDriver driver;
 
@@ -37,25 +41,59 @@ public class ProductsPage {
 
     }
 
-    public ProductsPage onClickBtnOne() {
+    public ProductsPage clickOnBtnOne() {
         SeleniumHelper.handleJavaExecutor(driver, btnOne);
         return this;
     }
 
-    public ProductsPage onClickBtnTwo() {
+    public ProductsPage clickOnBtnTwo() {
         SeleniumHelper.handleJavaExecutor(driver, btnTwo);
         return this;
     }
 
-    public ProductsPage onClickBtnNext() {
+    public ProductsPage clickOnBtnNext() {
         SeleniumHelper.handleJavaExecutor(driver, btnNext);
         return this;
     }
 
-    public ProductsPage onClickBtnArrowLeft() {
+    public ProductsPage clickOnBtnArrowLeft() {
         SeleniumHelper.handleJavaExecutor(driver, btnArrowLeft);
         return this;
     }
+
+    public ProductDetailsPage openProductDetailsPage(String productId) {
+        driver.findElement(By.id(productId)).click();
+        return new ProductDetailsPage(driver);
+    }
+
+    public ProductDetailsPage openProductDetailsPageByText(String productName) {
+        driver.findElement(By.xpath("//h3[text()='" + productName + "']"))
+                .click();
+        return new ProductDetailsPage(driver);
+    }
+
+    public ProductsPage addProductCart(String productId) {
+        driver.findElement(By.id(productId)).click();
+        return this;
+    }
+
+    public ProductsPage addProductWishList(String wishlistId) {
+        driver.findElement(By.id(wishlistId)).click();
+        return this;
+    }
+
+    public String getMessageText() {
+        String alertXPath = "//div[@role='alert']/div[2]";
+
+        SeleniumHelper.waitForVisibility(driver, By.xpath(alertXPath));
+        return driver.findElement(By.xpath(alertXPath)).getText();
+    }
+
+
+    public String getProductsQuantityInCart() {
+        return productsQuantity.getText();
+    }
+
 
     public HomePage addProductsWithoutDuplicateCart(int numberOfProducts) {
         Set<Integer> uniqueRandomNumbers = generateUniqueRandomNumbers(numberOfProducts);
@@ -95,6 +133,12 @@ public class ProductsPage {
 
     public int getProducts() {
         return listOfProducts.size();
+    }
+
+
+    public WishlistPage openWishlistPage () {
+        btnWishlist.click();
+        return new WishlistPage(driver);
     }
 
 

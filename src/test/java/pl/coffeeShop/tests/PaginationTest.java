@@ -14,8 +14,8 @@ public class PaginationTest extends BaseTest {
     public void visitPageOneBtnOneTest()  {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
-                .onClickBtnTwo()
-                .onClickBtnOne()
+                .clickOnBtnTwo()
+                .clickOnBtnOne()
                 .getProducts();
 
         Assert.assertEquals(numberOfProducts, NUMBER_OF_EXPECTED_PRODUCTS_PAGE_ONE);
@@ -25,7 +25,7 @@ public class PaginationTest extends BaseTest {
     public void visitPageTwoBtnTwoTest()  {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
-                .onClickBtnTwo()
+                .clickOnBtnTwo()
                 .getProducts();
 
         Assert.assertEquals(numberOfProducts, NUMBER_OF_EXPECTED_PRODUCTS_PAGE_TWO);
@@ -36,7 +36,7 @@ public class PaginationTest extends BaseTest {
     public void visitPageTwoBtnNextTest()  {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
-                .onClickBtnNext()
+                .clickOnBtnNext()
                 .getProducts();
 
         Assert.assertEquals(numberOfProducts, NUMBER_OF_EXPECTED_PRODUCTS_PAGE_TWO);
@@ -46,8 +46,8 @@ public class PaginationTest extends BaseTest {
     public void visitPageOneBtnArrowText() {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
-                .onClickBtnNext()
-                .onClickBtnArrowLeft()
+                .clickOnBtnNext()
+                .clickOnBtnArrowLeft()
                 .getProducts();
 
         Assert.assertEquals(numberOfProducts, NUMBER_OF_EXPECTED_PRODUCTS_PAGE_ONE);
@@ -58,10 +58,10 @@ public class PaginationTest extends BaseTest {
     public void handleAllButtons() {
         int numberOfProducts = new HomePage(driver)
                 .openProductsPage()
-                .onClickBtnOne()
-                .onClickBtnTwo()
-                .onClickBtnArrowLeft()
-                .onClickBtnNext()
+                .clickOnBtnOne()
+                .clickOnBtnTwo()
+                .clickOnBtnArrowLeft()
+                .clickOnBtnNext()
                 .getProducts();
 
         Assert.assertEquals(numberOfProducts, NUMBER_OF_EXPECTED_PRODUCTS_PAGE_TWO);
