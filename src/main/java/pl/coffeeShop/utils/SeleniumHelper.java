@@ -19,27 +19,9 @@ public class SeleniumHelper {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
-    public static void waitForVisibilityAndClick(WebDriver driver, By element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-        webElement.click();
-
-    }
-
-    public static void waitForElementToBeClickable(WebDriver driver, By element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-
     public static void waitForAlert(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());
-    }
-
-    public static void handleActionElements(WebDriver driver, WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).click();
     }
 
     public static void handleJavaExecutor(WebDriver driver, WebElement element) {
