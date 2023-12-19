@@ -33,15 +33,15 @@ public class UserRegistrationStepDefs {
         signUpPage = new SignUpPage(DriverFactory.getDriver());
         String password = faker.internet().password() + "U@";
 
-        SignUpUserModel  signUpUserModel = new SignUpUserModel();
-        signUpUserModel.setFirstName(faker.name().firstName());
-        signUpUserModel.setLastName(faker.name().lastName());
-        signUpUserModel.setEmail(faker.internet().emailAddress());
-        signUpUserModel.setPassword(password);
-        signUpUserModel.setConfirmPassword(password);
+        SignUpUserModel  user = new SignUpUserModel();
+        user.setFirstName(faker.name().firstName());
+        user.setLastName(faker.name().lastName());
+        user.setEmail(faker.internet().emailAddress());
+        user.setPassword(password);
+        user.setConfirmPassword(password);
 
         signUpPage
-                .fillFormWithValidData(signUpUserModel)
+                .fillFormWithValidData(user)
                 .clickOnAcceptTermsCheckbox()
                 .clickOnSignUpBtn();
 
