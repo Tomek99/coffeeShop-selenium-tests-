@@ -30,6 +30,9 @@ public class SignUpPage {
 
     @FindBy(className = "ErrMessage_errorText__1OrwW")
     private List<WebElement> errors;
+
+    @FindBy(xpath = "//input[@name='firstName']")
+    private List<WebElement> userInputSize;
     WebDriver driver;
 
     public SignUpPage(WebDriver driver) {
@@ -48,12 +51,12 @@ public class SignUpPage {
         return this;
     }
 
-    public SignUpPage handleCheckBox()  {
+    public SignUpPage clickOnAcceptTermsCheckbox() {
         acceptTermCheckbox.click();
         return this;
     }
 
-    public HomePage handleSignUpBtn() {
+    public HomePage clickOnSignUpBtn() {
         btnSignUp.click();
         return new HomePage(driver);
     }
@@ -63,9 +66,9 @@ public class SignUpPage {
         return this;
     }
 
-    public List<String> getErrors()  {
+    public List<String> getErrors() {
         SeleniumHelper.waitForVisibility(driver, By.className("ErrMessage_errorText__1OrwW"));
-        return  errors.stream()
+        return errors.stream()
                 .map(WebElement::getText)
                 .toList().stream()
                 .map(String::trim)
@@ -74,10 +77,14 @@ public class SignUpPage {
                 .collect(Collectors.toList());
     }
 
-    public String getError(String path)  {
+    public String getError(String path) {
         String error = driver.findElement(By.xpath(String.format("//div[text()='%s']", path))).getText();
-       return error;
+        return error;
 
+    }
+
+    public int getUsernameInputSize() {
+        return userInputSize.size();
     }
 
 

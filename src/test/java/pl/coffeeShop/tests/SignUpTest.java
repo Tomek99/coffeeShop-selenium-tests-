@@ -5,9 +5,7 @@ import org.testng.annotations.Test;
 import pl.coffeeShop.models.SignUpUserModel;
 import pl.coffeeShop.pages.HomePage;
 
-import java.awt.*;
 import java.util.List;
-import java.util.Random;
 
 public class SignUpTest extends BaseTest {
     @Test
@@ -23,9 +21,9 @@ public class SignUpTest extends BaseTest {
         String textAlert = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
-                .handleSignUpBtn()
-                .getLogInAlert();
+                .clickOnAcceptTermsCheckbox()
+                .clickOnSignUpBtn()
+                .getAlertMessage();
 
         Assert.assertEquals(textAlert, "You have been logged in!");
     }
@@ -43,7 +41,7 @@ public class SignUpTest extends BaseTest {
         String error = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
+                .clickOnAcceptTermsCheckbox()
                 .handleSignUpBtnInvalidData()
                 .getError("Email already exists");
 
@@ -63,7 +61,7 @@ public class SignUpTest extends BaseTest {
         String error = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
+                .clickOnAcceptTermsCheckbox()
                 .handleSignUpBtnInvalidData()
                 .getError("Must be 3 characters or more");
 
@@ -83,7 +81,7 @@ public class SignUpTest extends BaseTest {
         String error = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
+                .clickOnAcceptTermsCheckbox()
                 .handleSignUpBtnInvalidData()
                 .getError("Must be 3 characters or more");
 
@@ -104,7 +102,7 @@ public class SignUpTest extends BaseTest {
         String error = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
+                .clickOnAcceptTermsCheckbox()
                 .handleSignUpBtnInvalidData()
                 .getError("Invalid email address");
 
@@ -124,7 +122,7 @@ public class SignUpTest extends BaseTest {
         String error = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
+                .clickOnAcceptTermsCheckbox()
                 .handleSignUpBtnInvalidData()
                 .getError("Passwords must match");
 
@@ -144,7 +142,7 @@ public class SignUpTest extends BaseTest {
         String error = new HomePage(driver)
                 .openSignUpPage()
                 .fillFormWithValidData(user)
-                .handleCheckBox()
+                .clickOnAcceptTermsCheckbox()
                 .handleSignUpBtnInvalidData()
                 .getError("Passwords must match");
 

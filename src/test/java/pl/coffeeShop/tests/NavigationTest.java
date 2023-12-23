@@ -3,7 +3,6 @@ package pl.coffeeShop.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.coffeeShop.pages.HomePage;
-import pl.coffeeShop.pages.ProductsPage;
 
 public class NavigationTest extends BaseTest {
     @Test

@@ -1,10 +1,10 @@
 package pl.coffeeShop.pages;
 
-import com.beust.ah.A;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pl.coffeeShop.utils.DriverFactory;
 import pl.coffeeShop.utils.SeleniumHelper;
 
 import java.util.List;
@@ -75,6 +75,12 @@ public class HomePage {
         this.js = (JavascriptExecutor) driver;
     }
 
+
+    public HomePage openHomePage() {
+        DriverFactory.getDriver().get("http://localhost:3000/");
+
+        return this;
+    }
     public ContactPage openContactPage() {
         aContact.click();
         return new ContactPage(driver);
@@ -88,9 +94,11 @@ public class HomePage {
         return new SignUpPage(driver);
     }
 
-    public String getLogInAlert() {
-        SeleniumHelper.waitForVisibility(driver, By.xpath("//div[text()='You have been logged in!']"));
-        return logInAlert.getText();
+    public String getAlertMessage() {
+        String alertXPath = "//div[@role='alert']/div[2]";
+
+        SeleniumHelper.waitForVisibility(driver, By.xpath(alertXPath));
+        return driver.findElement(By.xpath(alertXPath)).getText();
     }
 
     public LoginPage openLoginPage() {
