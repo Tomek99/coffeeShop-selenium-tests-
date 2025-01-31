@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LoginTest extends BaseTest{
     @Test
-    public void loginWithValidData() {
+    public void loginWithValidDataTest() {
         String email = "test1@gmail.com";
         String password = "Test1@gmail";
 
@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void loginWithInvalidEmail() {
+    public void loginWithInvalidEmailTest() {
         String email = "testg@gmail.com";
         String password = "Test1@gmail";
 
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void loginWithInvalidPassword() {
+    public void loginWithInvalidPasswordTest() {
         String email = "test1@gmail.com";
         String password = "Test@123@gmailWRONG";
 
@@ -49,7 +49,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void loginWithEmailOnly() {
+    public void loginWithEmailOnlyTest() {
         String email = "test1@gmail.com";
         String password = "";
 
@@ -64,7 +64,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void loginWithPasswordOnly() {
+    public void loginWithPasswordOnlyTest() {
         String email = "";
         String password = "Test1@gmail";
 
@@ -78,7 +78,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void loginWithEmptyForm() {
+    public void loginWithEmptyFormTest() {
         String email = "";
         String password = "";
 

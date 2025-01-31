@@ -8,26 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactFormTest extends BaseTest {
+
     @Test
     public void fillFirstFormWithValidData()  {
-      ArrayList<String> listOfString = new HomePage(driver)
+
+        String successText = new HomePage(driver)
               .openContactPage()
                 .fillFirstForm("Tomasz Kowalski", "test@gmail.com", "Hello World!")
                 .handleFirstForm()
                 .handleAlert();
 
-        Assert.assertEquals(listOfString.size(), 3);
+        Assert.assertTrue(successText.contains("Message has been sent successfully!"));
     }
 
     @Test
     public void fillSecondFormWithValidData() {
-        ArrayList<String> listOfString = new HomePage(driver)
+        String successText = new HomePage(driver)
                 .openContactPage()
-                .fillSecondForm("Tomasz Kowalski", "000 111 222", "Good Mornning")
+                .fillSecondForm("Tomasz Kowalski", "111222333", "Good Mornning")
                 .handleSecondForm()
                 .handleAlert();
 
-        Assert.assertEquals(listOfString.size(), 3);
+        Assert.assertTrue(successText.contains("Message has been sent"));
     }
 
     @Test

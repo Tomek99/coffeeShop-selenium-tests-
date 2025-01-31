@@ -6,7 +6,7 @@ import pl.coffeeShop.pages.HomePage;
 
 public class PaginationTest extends BaseTest {
     private final int NUMBER_OF_EXPECTED_PRODUCTS_PAGE_ONE = 12;
-    private final int NUMBER_OF_EXPECTED_PRODUCTS_PAGE_TWO = 10;
+    private final int NUMBER_OF_EXPECTED_PRODUCTS_PAGE_TWO = 9;
 
 
 

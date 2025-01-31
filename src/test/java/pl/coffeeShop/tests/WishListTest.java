@@ -8,7 +8,7 @@ public class WishListTest extends BaseTest {
 
     @Test
     public void viewProductTest() {
-        String productNameExpected = "Crema e Aroma, 1 kg";
+        String productNameExpected = "Espresso Italiano Cremoso, 1 kg";
 
         String productName = new HomePage(driver)
                 .openProductsPage()

@@ -214,4 +214,6 @@ public class UserRegistrationStepDefs {
         List<String> errorText = signUpPage.getErrors();
         Assert.assertTrue(errorText.contains("Accept Terms & Conditions is required"));
     }
+
+
 }

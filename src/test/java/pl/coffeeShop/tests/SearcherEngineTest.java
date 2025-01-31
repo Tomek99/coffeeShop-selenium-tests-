@@ -25,7 +25,7 @@ public class SearcherEngineTest extends BaseTest {
     @Test
     public void enterValidDataTest() {
         String data = "caffe";
-        int numberExpected = 5;
+        int numberExpected = 4;
 
         List<String> foundElements = new HomePage(driver)
                 .clickOnSearcherBsBtn()

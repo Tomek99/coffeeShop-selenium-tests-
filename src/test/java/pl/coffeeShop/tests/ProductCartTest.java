@@ -1,5 +1,6 @@
 package pl.coffeeShop.tests;
 
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.coffeeShop.pages.HomePage;
@@ -52,7 +53,9 @@ public class ProductCartTest extends BaseTest {
                 .clickOnCart()
                 .getCartSize();
 
-        Assert.assertEquals(randomNumberOfProducts, numberOfProducts);
+        Assert.assertEquals(numberOfProducts, randomNumberOfProducts);
+
+
 
     }
 

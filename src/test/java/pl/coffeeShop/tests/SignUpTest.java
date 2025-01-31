@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SignUpTest extends BaseTest {
     @Test
-    public void signUpWithValidData() {
+    public void signUpWithValidDataTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Tomasz");
@@ -29,7 +29,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithExistEmail() {
+    public void signUpWithExistEmailTest() {
 
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Tomasz");
@@ -49,7 +49,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithInvalidFirstName() {
+    public void signUpWithInvalidFirstNameTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Te");
@@ -69,7 +69,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithInvalidLastName() {
+    public void signUpWithInvalidLastNameTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Test");
@@ -90,7 +90,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithInvalidEmail() {
+    public void signUpWithInvalidEmailTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Test");
@@ -110,7 +110,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithInvalidPassword() {
+    public void signUpWithInvalidPasswordTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Test");
@@ -130,7 +130,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithInvalidConfirmPassword() {
+    public void signUpWithInvalidConfirmPasswordTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Test");
@@ -150,7 +150,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithoutConsents() {
+    public void signUpWithoutConsentsTest() {
         int number = (int) (Math.random() * 1000);
         SignUpUserModel user = new SignUpUserModel();
         user.setFirstName("Tomasz");
@@ -169,7 +169,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWithEmptyData() {
+    public void signUpWithEmptyDataTest() {
         SignUpUserModel user = new SignUpUserModel();
 
         List<String> errors = new HomePage(driver)

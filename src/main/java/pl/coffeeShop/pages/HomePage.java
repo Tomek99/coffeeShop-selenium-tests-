@@ -26,7 +26,7 @@ public class HomePage {
     @FindBy(xpath = "//a[text()='Blog' and @class='NavListElement_navLink__JIc6z']")
     private WebElement aBlog;
 
-    @FindBy(xpath = "//a[text()='Sign up']")
+    @FindBy(xpath = "//button[text()='Sign up']")
     private List<WebElement> aSignUp;
 
     @FindBy(xpath = "//a[@id='userNavigationBtn0']")
@@ -38,7 +38,7 @@ public class HomePage {
     @FindBy(xpath = "//header[text()='about us']")
     private WebElement headerTextAboutUs;
 
-    @FindBy(xpath = "//a[text()='Log in']")
+    @FindBy(xpath = "//button[text()='Log in']")
     List<WebElement> aLogin;
 
 
@@ -66,6 +66,9 @@ public class HomePage {
     @FindBy(xpath = ("//div[@class='SearchEngine_flexRowTemplate__L0kWa']/div"))
     private List<WebElement> foundElementsSearcher;
 
+    @FindBy (xpath = "//header[text()='fresh coffee in the morning']")
+            private WebElement freshCoffeeInTheMorningTitle;
+
     WebDriver driver;
     JavascriptExecutor js;
 
@@ -81,6 +84,7 @@ public class HomePage {
 
         return this;
     }
+
     public ContactPage openContactPage() {
         aContact.click();
         return new ContactPage(driver);
@@ -171,14 +175,17 @@ public class HomePage {
     }
 
     public int getCartSize() {
+        By cartQuantityWebElement = By.xpath("//span[@data-testid='cartQuantity']");
+
         try {
-            WebElement webElement = driver.findElement(By.xpath("//span[contains(text(), 'items)')]"));
-            return Character.getNumericValue(webElement.getText().charAt(1));
-        } catch (NoSuchElementException e) {
+            SeleniumHelper.waitForVisibility(driver, cartQuantityWebElement);
+            String text = driver.findElement(cartQuantityWebElement).getText();
+            return Integer.parseInt(text);
+
+        } catch (NoSuchElementException | NumberFormatException | TimeoutException e) {
             return 0;
         }
     }
-
 
 
     public Integer getCartProducts() {
@@ -187,6 +194,10 @@ public class HomePage {
 
     public String getHeaderText() {
         return headerTextAboutUs.getText();
+    }
+
+    public String getTitleFreshCoffeeInTheMorning() {
+        return freshCoffeeInTheMorningTitle.getText();
     }
 
 

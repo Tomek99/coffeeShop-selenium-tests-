@@ -26,7 +26,7 @@ public class SignUpPage {
     @FindBy(name = "acceptTerms")
     private WebElement acceptTermCheckbox;
     @FindBy(xpath = "//button[text()='Sign up']")
-    private WebElement btnSignUp;
+    private List<WebElement> btnSignUp;
 
     @FindBy(className = "ErrMessage_errorText__1OrwW")
     private List<WebElement> errors;
@@ -57,12 +57,12 @@ public class SignUpPage {
     }
 
     public HomePage clickOnSignUpBtn() {
-        btnSignUp.click();
+        btnSignUp.get(1).click();
         return new HomePage(driver);
     }
 
     public SignUpPage handleSignUpBtnInvalidData() {
-        btnSignUp.click();
+        btnSignUp.get(1).click();
         return this;
     }
 

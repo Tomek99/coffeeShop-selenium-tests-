@@ -18,7 +18,7 @@ public class LoginPage {
     WebElement passwordInput;
 
     @FindBy(xpath = "//button[text()='Log in']")
-    WebElement loginBtn;
+    List<WebElement> loginBtn;
 
     @FindBy(className = "LogIn_error__HhaPV")
     WebElement error;
@@ -43,14 +43,14 @@ public class LoginPage {
     }
 
     public String handleCorrectData() {
-        loginBtn.click();
+        loginBtn.get(1).click();
 
         return SeleniumHelper.getTextAlert(driver,
                 By.xpath("//div[text()='You have been logged in!']"));
     }
 
     public LoginPage handleIncorrectData() {
-        loginBtn.click();
+        loginBtn.get(1).click();
         return this;
     }
 
