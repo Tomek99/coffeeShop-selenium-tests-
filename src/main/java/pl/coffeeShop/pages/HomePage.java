@@ -81,7 +81,6 @@ public class HomePage {
 
     public HomePage openHomePage() {
         DriverFactory.getDriver().get("http://localhost:3000/");
-
         return this;
     }
 
@@ -197,7 +196,7 @@ public class HomePage {
     }
 
     public String getTitleFreshCoffeeInTheMorning() {
-        return freshCoffeeInTheMorningTitle.getText();
+        return freshCoffeeInTheMorningTitle.getText().toLowerCase();
     }
 
 

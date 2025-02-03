@@ -72,7 +72,7 @@ public class AdminLoginTest extends BaseAdminPanelTest {
     public void returnToHomePage() {
         String expectedText = "fresh coffee in the morning";
 
-        String foundText = new AdminLoginPage(driver).clickOnReturnHomeBtn().getTitleFreshCoffeeInTheMorning().toLowerCase();
+        String foundText = new AdminLoginPage(driver).clickOnReturnHomeBtn().getTitleFreshCoffeeInTheMorning();
         Assert.assertEquals(foundText, expectedText);
     }
 }

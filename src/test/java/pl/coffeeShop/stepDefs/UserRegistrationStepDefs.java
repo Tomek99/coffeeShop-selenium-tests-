@@ -5,6 +5,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 import pl.coffeeShop.models.SignUpUserModel;
+import pl.coffeeShop.pages.AdminLoginPage;
 import pl.coffeeShop.pages.HomePage;
 import pl.coffeeShop.pages.SignUpPage;
 import pl.coffeeShop.utils.DriverFactory;
@@ -214,6 +215,7 @@ public class UserRegistrationStepDefs {
         List<String> errorText = signUpPage.getErrors();
         Assert.assertTrue(errorText.contains("Accept Terms & Conditions is required"));
     }
+
 
 
 }

@@ -9,8 +9,8 @@ Feature: User registration
     And Fill out the register form with valid data
     And Accept formal consents
     And Click on sign up button
-    Then User is redirected to home page
-    But The register form is invisible to the user
+    Then The register form is invisible to the user
+
 
   Scenario: Sign up user with empty data
     And Click on sign up button

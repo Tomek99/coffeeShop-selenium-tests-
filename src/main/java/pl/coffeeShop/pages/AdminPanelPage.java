@@ -10,7 +10,7 @@ public class AdminPanelPage {
     WebElement welcomeToTheAdminPanelText;
 
     WebDriver driver;
-    AdminPanelPage(WebDriver driver){
+    public AdminPanelPage(WebDriver driver){
         PageFactory.initElements(driver,this);
         this.driver = driver;
     }

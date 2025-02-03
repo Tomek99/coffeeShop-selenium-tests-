@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pl.coffeeShop.utils.DriverFactory;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +30,16 @@ public class AdminLoginPage {
     private  WebElement invalidLoginOrPassword;
 
     WebDriver driver;
+
     public AdminLoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
+    }
+
+    public void openAdminLoginPage() {
+        driver.get("http://localhost:3000/admin");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
     }
 
     public AdminLoginPage fillAdminLoginInput(String login) {
